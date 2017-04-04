@@ -4,11 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.iis.mto.time.Order;
+
 public class OrderTest {
 
 	@Test
-	public void test() {
-		
+	public void testThrowOfOrderExpiredException() {
+		Order order = new Order();
+		order.submit();
+		order.confirm();
 	}
 
 }
