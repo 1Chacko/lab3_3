@@ -2,6 +2,9 @@ package edu.iis.mto.test;
 
 import static org.junit.Assert.*;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.core.IsEqual.equalTo;
+
 import org.junit.Test;
 
 import edu.iis.mto.fakeclock.FakeClock;
@@ -27,6 +30,15 @@ public class OrderTest {
 		Order order = new Order();
 		order.confirm(new RealClock());
 		
+	}
+	
+	@Test
+	public void testStateIsConfirmed() {
+		
+		Order order = new Order();
+		order.submit();
+		order.confirm(new RealClock());
+		assertThat(order.getOrderState(), is(equalTo(Order.State.CONFIRMED)));
 	}
 	
 }

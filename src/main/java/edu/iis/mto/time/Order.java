@@ -42,6 +42,7 @@ public class Order {
 			orderState = State.CANCELLED;
 			throw new OrderExpiredException();
 		}
+		orderState = State.CONFIRMED;
 	}
 
 	public void realize() {
@@ -49,7 +50,7 @@ public class Order {
 		orderState = State.REALIZED;
 	}
 
-	State getOrderState() {
+	public State getOrderState() {
 		return orderState;
 	}
 	
