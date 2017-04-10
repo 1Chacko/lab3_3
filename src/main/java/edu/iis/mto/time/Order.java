@@ -6,6 +6,7 @@ import java.util.List;
 import org.joda.time.DateTime;
 import org.joda.time.Hours;
 
+import edu.iis.mto.fakeclock.IClockInterface;
 import edu.iis.mto.fakeclock.RealClock;
 
 public class Order {
@@ -34,9 +35,9 @@ public class Order {
 
 	}
 
-	public void confirm() {
+	public void confirm(IClockInterface clock) {
 		requireState(State.SUBMITTED);
-		int hoursElapsedAfterSubmittion = Hours.hoursBetween(subbmitionDate, new DateTime(new RealClock().currentTimeMillis())).getHours();
+		int hoursElapsedAfterSubmittion = Hours.hoursBetween(subbmitionDate, new DateTime(clock.currentTimeMillis())).getHours();
 		if(hoursElapsedAfterSubmittion > VALID_PERIOD_HOURS){
 			orderState = State.CANCELLED;
 			throw new OrderExpiredException();
