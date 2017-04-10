@@ -21,7 +21,7 @@ public class OrderTest {
 		Order order = new Order();
 		order.submit();
 		order.confirm(new FakeClock());
-		
+		assertThat(order.getOrderState(), is(equalTo(Order.State.CANCELLED)));
 	}
 	
 	@Test(expected = OrderStateException.class)
