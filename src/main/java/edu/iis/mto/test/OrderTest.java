@@ -41,4 +41,14 @@ public class OrderTest {
 		assertThat(order.getOrderState(), is(equalTo(Order.State.CONFIRMED)));
 	}
 	
+	@Test
+	public void testStateIsRealized() {
+		
+		Order order = new Order();
+		order.submit();
+		order.confirm(new RealClock());
+		order.realize();
+		assertThat(order.getOrderState(), is(equalTo(Order.State.REALIZED)));
+	}
+	
 }
